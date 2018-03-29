@@ -1,6 +1,7 @@
 let express =  require('express'),
+cors = require('cors'),
 app =  express(),
-port =  process.env.PORT || 3001,
+port =  process.env.PORT || 3000,
 mongoose = require('mongoose'),
 Task = require('./api/models/todoListModel'),
 bodyParser = require('body-parser');
@@ -8,9 +9,9 @@ bodyParser = require('body-parser');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/Tododb');
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 let routes = require('./api/routes/todoListRoutes');
 routes(app);
 
