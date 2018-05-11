@@ -17,16 +17,14 @@ class ProductItem extends React.Component {
   render() {
     return (
       <li className='col-md-3' key={this.state.product.name}>
-        <div className='product-item'>
-          <img className='img-responsive' src={require(`Images/${this.state.product.image}`)} />
-          <div className='product-description'>
-            <h5>{this.state.product.name}</h5>
-            <div className='d-flex justify-content-between'>
-              <label>{this.state.product.description}</label>
-              <span>${this.state.product.price}</span>
-            </div>
+        <div className='card'>
+          <img className='card-img-top' src={require(`Images/${this.state.product.image}`)} alt={`${this.state.product.image}`} />
+            <div className='card-body'>
+              <h5 className='card-title'>{this.state.product.name}</h5>
+              <h6 className='card-subtitle mb-2 text-muted'>${this.state.product.price}</h6>
+              <p>{this.state.product.description}</p>
             <button className='btn btn-success' onClick={this.compareButtonClick}>{this.state.compareStatus}</button>
-          </div>
+            </div>
         </div>
       </li>
     );

@@ -6,7 +6,7 @@ class CompareApp extends React.Component {
   render() {
     return (
       <div className='container'>
-        <h1 className='text-center'>Product Comparision</h1>
+        <h1 className='text-center display-3 mb-5'>Product Comparision</h1>
         <ProductList />
         <ProductComparision />
       </div>
