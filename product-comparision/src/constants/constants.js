@@ -1,5 +1,6 @@
 export const productsData = [
   {
+    id: 1,
     name: 'Chair',
     price: 39,
     condition: 'new',
@@ -8,6 +9,7 @@ export const productsData = [
     image: 'chair.jpg',
   },
   {
+    id: 2,
     name: 'Lamp',
     price: 319,
     condition: 'used',
@@ -16,6 +18,7 @@ export const productsData = [
     image: 'lamp.jpg',
   },
   {
+    id: 3,
     name: 'Statue',
     price: 239,
     condition: 'used',
@@ -24,6 +27,7 @@ export const productsData = [
     image: 'tower.jpg',
   },
   {
+    id: 4,
     name: 'Seat',
     price: 239,
     condition: 'new',

@@ -12,6 +12,7 @@ const IMAGES_PATH = path.resolve(SRC_DIR + '/images');
 const CONSTANTS_PATH = path.resolve(SRC_DIR + '/constants');
 
 module.exports = {
+  devtool: 'source-map',
   entry: ROOT_PATH,
   output: {
     path: DIST_DIR,

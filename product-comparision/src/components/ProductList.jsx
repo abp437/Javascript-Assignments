@@ -11,7 +11,7 @@ class ProductList extends React.Component {
       <ul className='list-unstyled d-flex'>
         {
           productsData.map(item => {
-            return <ProductItem item={item} />
+            return <ProductItem item={item} compareCounter={(item) => {this.props.compareCounter(item)}} />
           })
         }
       </ul>
