@@ -13,27 +13,25 @@ class CompareApp extends React.Component {
 
   compareCounter(itemId) {
     const compareItemIds = [...this.state.compareItemIds];
-    if (compareItemIds.indexOf(itemId) === -1) {
-      compareItemIds.push(itemId)
+    if (compareItemIds.indexOf(itemId.id) === -1) {
+      compareItemIds.push(itemId);
       this.setState({
         compareItemIds
       });
     } else {
-      compareItemIds.splice(itemId)
+      compareItemIds.splice(itemId);
       this.setState({
         compareItemIds
       });
     }
-    console.log(compareItemIds);
   }
-  
 
   render() {
     return (
       <div className='container'>
         <h1 className='text-center display-3 mb-5'>Product Comparision</h1>
         <ProductList compareCounter={this.compareCounter} />
-        <ProductComparision />
+        <ProductComparision productsCompared={this.state.compareItemIds} />
       </div>
     );
   }

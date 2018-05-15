@@ -10,7 +10,7 @@ class ProductItem extends React.Component {
   compareButtonClick() {
     this.setState({
       compareStatus: !this.state.compareStatus
-    }, this.props.compareCounter(this.props.item.id));
+    }, this.props.compareCounter(this.props.item));
   }
 
   render() {
