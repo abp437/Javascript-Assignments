@@ -11,19 +11,17 @@ class CompareApp extends React.Component {
     this.compareCounter = this.compareCounter.bind(this);
   }
 
-  compareCounter(itemId) {
+  compareCounter(product) {
     const compareItemIds = [...this.state.compareItemIds];
-    if (compareItemIds.indexOf(itemId.id) === -1) {
-      compareItemIds.push(itemId);
-      this.setState({
-        compareItemIds
-      });
+    let itemIndex = compareItemIds.findIndex(item => item.id === product.id);
+    if (itemIndex >= 0) {
+      compareItemIds.splice(itemIndex, 1);
     } else {
-      compareItemIds.splice(itemId);
-      this.setState({
-        compareItemIds
-      });
+      compareItemIds.push(product);
     }
+    this.setState({
+      compareItemIds
+    });
   }
 
   render() {

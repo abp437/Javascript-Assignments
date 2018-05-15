@@ -10,8 +10,6 @@ class ProductComparision extends React.Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (prevState.productsToBeCompared !== nextProps.productsCompared) {
-      console.log(prevState.productsToBeCompared);
-      console.log(nextProps.productsCompared);
       return {
         productsToBeCompared: nextProps.productsCompared
       };
