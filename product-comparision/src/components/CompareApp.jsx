@@ -29,6 +29,7 @@ class CompareApp extends React.Component {
       <div className='container'>
         <h1 className='text-center display-3 mb-5'>Product Comparision</h1>
         <ProductList compareCounter={this.compareCounter} />
+        <h1 className='text-center'>Comparision</h1>
         <ProductComparision productsCompared={this.state.compareItemIds} />
       </div>
     );

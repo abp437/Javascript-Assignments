@@ -4,7 +4,7 @@ import { productsData } from 'Constants/constants';
 class ProductList extends React.Component {
   render() {
     return (
-      <ul className='list-unstyled d-flex'>
+      <ul className='list-unstyled d-flex justify-content-center'>
         {
           productsData.map(item => {
             return <ProductItem item={item} compareCounter={item => this.props.compareCounter(item)} />

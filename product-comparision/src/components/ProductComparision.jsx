@@ -1,3 +1,4 @@
+import ProductColors from 'Components/ProductColors';
 import { productsData } from 'Constants/constants';
 
 class ProductComparision extends React.Component {
@@ -25,12 +26,10 @@ class ProductComparision extends React.Component {
             return (
               <li className='col-xs-6 col-md-3'>
                 <div className='card'>
-                  <img className='card-img-top' src={require(`Images/${item.image}`)} alt={`${item.image}`} />
                   <div className='card-body'>
                     <h5 className='card-title'>{item.name}</h5>
                     <h6 className='card-subtitle mb-2 text-muted'>${item.price}</h6>
-                    <p>{item.description}</p>
-                    <button className='btn btn-success'>Compare</button>
+                    <ProductColors availableColors={item.colors} />
                   </div>
                 </div>
               </li>
