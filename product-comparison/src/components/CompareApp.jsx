@@ -1,13 +1,13 @@
 import ReactDOM from 'react-dom';
 import ProductList from 'Components/ProductList';
-import ProductComparision from 'Components/ProductComparision';
+import ProductComparison from 'Components/ProductComparison';
 
 class CompareApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       compareItemIds: [],
-    }
+    };
     this.compareCounter = this.compareCounter.bind(this);
   }
 
@@ -27,10 +27,15 @@ class CompareApp extends React.Component {
   render() {
     return (
       <div className='container'>
-        <h1 className='text-center display-3 mb-5'>Product Comparision</h1>
+        <h1 className='text-center display-3 mb-5'>Product Comparison</h1>
         <ProductList compareCounter={this.compareCounter} />
-        <h1 className='text-center'>Comparision</h1>
-        <ProductComparision productsCompared={this.state.compareItemIds} />
+        {
+          this.state.compareItemIds.length >= 2 &&
+          <div>
+            <h2 className='text-center mb-4'>Comparison</h2>
+            <ProductComparison productsCompared={this.state.compareItemIds} />
+          </div>
+        }
       </div>
     );
   }
