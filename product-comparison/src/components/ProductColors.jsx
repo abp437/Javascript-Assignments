@@ -1,4 +1,4 @@
-const ProductColors = props => {
+export const ProductColors = props => {
   return (
     <div className='available-colors mb-4 d-flex justify-content-center'>
       {
@@ -9,5 +9,3 @@ const ProductColors = props => {
     </div>
   );
 };
-
-export default ProductColors;
