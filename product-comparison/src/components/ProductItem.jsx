@@ -19,8 +19,8 @@ class ProductItem extends React.Component {
     }, this.props.compareCounter(this.props.item));
   }
 
-  closeButtonClick() {
-    console.log('Here');
+  closeButtonClick(itemId) {
+    this.props.itemRemoval(itemId);
   }
 
   editStatus(productId) {
@@ -40,7 +40,7 @@ class ProductItem extends React.Component {
     const product = this.props.item || {};
     return (
       <li className='col-xs-6 col-md-3 list-item'>
-        <CloseIcon itemRemoval={this.closeButtonClick} />
+        <CloseIcon itemRemoval={() => this.closeButtonClick(product.id)} />
         <div className='card'>
           <img className='card-img-top' src={require(`Images/${product.image}`)} alt={`${product.image}`} />
           <div className='card-body'>

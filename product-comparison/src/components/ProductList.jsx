@@ -8,6 +8,17 @@ export default class ProductList extends React.Component {
       productsList: [...productsData]
     }
     this.someFunction = this.someFunction.bind(this);
+    this.somethingNew = this.somethingNew.bind(this);
+  }
+
+  somethingNew(removedItem) {
+    let tempState = [...this.state.productsList];
+    let toRemoveItem = tempState.filter(item => {
+      return item.id !== removedItem
+    });
+    this.setState({
+      productsList: toRemoveItem
+    });
   }
 
   someFunction(valuePassed, productID) {
@@ -28,7 +39,7 @@ export default class ProductList extends React.Component {
       <ul className='list-unstyled d-flex flex-wrap flex-md-nowrap justify-content-center mb-5'>
         {
           this.state.productsList.map(item => {
-            return <ProductItem item={item} compareCounter={item => this.props.compareCounter(item)} someValue={this.someFunction} />
+            return <ProductItem item={item} compareCounter={item => this.props.compareCounter(item)} someValue={this.someFunction} itemRemoval={this.somethingNew} />
           })
         }
       </ul>

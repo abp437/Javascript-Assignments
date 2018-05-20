@@ -2,28 +2,12 @@ import ProductColors from 'Components/ProductColors';
 import { productsData } from 'Constants/constants';
 
 export default class ProductComparison extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      productsCompared: this.props.productsCompared
-    }
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    console.log(nextProps.productsCompared);
-    if (nextProps.productsCompared !== prevState.productsCompared) {
-      return {
-        productsCompared: nextProps.productsCompared
-      };
-    }
-    return null;
-  }
 
   render() {
     return (
       <ul className='list-unstyled d-flex'>
         {
-          this.state.productsCompared.map(item => {
+          this.props.productsCompared.map(item => {
             return (
               <li className='col-xs-6 col-md-3'>
                 <div className='card'>
