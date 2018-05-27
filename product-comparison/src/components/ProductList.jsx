@@ -1,48 +1,25 @@
 import ProductItem from 'Components/ProductItem';
-import { productsData } from 'Constants/constants';
 
-export default class ProductList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      productsList: [...productsData]
+const ProductList = props => (
+  <ul className='list-unstyled d-flex flex-wrap flex-md-nowrap justify-content-center mb-5'>
+    {
+      props.products.map(item => {
+        return <ProductItem item={item} itemCompareStatus={props.compareCount} updateProductTitle={props.updateProductTitle} />
+      })
     }
-    this.someFunction = this.someFunction.bind(this);
-    this.somethingNew = this.somethingNew.bind(this);
-  }
+  </ul>
+);
 
-  somethingNew(removedItem) {
-    let tempState = [...this.state.productsList];
-    let toRemoveItem = tempState.filter(item => {
-      return item.id !== removedItem
-    });
-    this.setState({
-      productsList: toRemoveItem
-    });
-  }
-
-  someFunction(valuePassed, productID) {
-    let tempState = [...this.state.productsList];
-    let something = tempState.filter(item => {
-      if (item.id === productID) {
-        item.name = valuePassed;
-      }
-      return item;
-    });
-    this.setState({
-      productsList: something
-    });
-  }
-
-  render() {
-    return (
-      <ul className='list-unstyled d-flex flex-wrap flex-md-nowrap justify-content-center mb-5'>
-        {
-          this.state.productsList.map(item => {
-            return <ProductItem item={item} compareCounter={item => this.props.compareCounter(item)} someValue={this.someFunction} itemRemoval={this.somethingNew} />
-          })
-        }
-      </ul>
-    );
-  }
+ProductList.defaultProps = {
+  products: [],
+  compareCount: () => { },
+  updateProductTitle: () => { },
 };
+
+ProductList.propTypes = {
+  products: PropTypes.array,
+  compareCount: PropTypes.func,
+  updateProductTitle: PropTypes.func,
+};
+
+export default ProductList;

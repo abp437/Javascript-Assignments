@@ -70,7 +70,8 @@ module.exports = {
     new webpack.ProvidePlugin({
       'React': 'react',
       $: 'jquery',
-      jQuery: 'jquery'
+      jQuery: 'jquery',
+      PropTypes: 'prop-types',
     }),
     new MiniCssExtractPlugin('main.css'),
     new HtmlWebpackPlugin({

@@ -1,62 +1,61 @@
 import { EditIcon, TickIcon, CloseIcon } from 'Components/SVG';
 
-class ProductItem extends React.Component {
+export default class ProductItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      compareStatus: true,
-      editable: false
+      addedToComparison: false,
+      ongoingEdit: false,
     };
-    this.editableDiv = React.createRef();
-    this.compareButtonClick = this.compareButtonClick.bind(this);
-    this.closeButtonClick = this.closeButtonClick.bind(this);
-    this.editStatus = this.editStatus.bind(this);
+    this.productTitle = React.createRef();
   }
 
-  compareButtonClick() {
+  startEdit(productId) {
+    if (this.productTitle.current.textContent !== '') {
+      this.setState({
+        ongoingEdit: !this.state.ongoingEdit
+      }, this.updatedProductTitle.bind(this, productId));
+    } else {
+      alert("Product title can't be Blank.");
+      this.productTitle.current.focus();
+    }
+  }
+
+  updatedProductTitle(productId) {
+    if (this.state.ongoingEdit) {
+      this.productTitle.current.focus();
+    } else {
+      this.productTitle.current.blur();
+      this.props.updateProductTitle(this.productTitle.current.textContent, productId);
+    }
+  }
+
+  toggleCompareStatus(productId) {
     this.setState({
-      compareStatus: !this.state.compareStatus
-    }, this.props.compareCounter(this.props.item));
-  }
-
-  closeButtonClick(itemId) {
-    this.props.itemRemoval(itemId);
-  }
-
-  editStatus(productId) {
-    this.setState({
-      editable: !this.state.editable
-    }, () => {
-      if (this.state.editable) {
-        this.editableDiv.current.focus();
-      } else {
-        this.editableDiv.current.blur();
-        this.props.someValue(this.editableDiv.current.innerHTML, productId);
-      }
-    });
+      addedToComparison: !this.state.addedToComparison
+    }, this.props.itemCompareStatus(productId));
   }
 
   render() {
     const product = this.props.item || {};
     return (
       <li className='col-xs-6 col-md-3 list-item'>
-        <CloseIcon itemRemoval={() => this.closeButtonClick(product.id)} />
         <div className='card'>
           <img className='card-img-top' src={require(`Images/${product.image}`)} alt={`${product.image}`} />
           <div className='card-body'>
             <div className='d-flex justify-content-between align-items-center mb-3'>
-              <h5 className='card-title mb-0' ref={this.editableDiv} contentEditable={this.state.editable}>{product.name}</h5>
+              <h5 className='card-title m-0' ref={this.productTitle} contentEditable={this.state.ongoingEdit}>{product.name}</h5>
               {
-                this.state.editable ? (
-                  <TickIcon editStatus={() => this.editStatus(product.id)} />
+                this.state.ongoingEdit ? (
+                  <TickIcon editStatus={this.startEdit.bind(this, product.id)} />
                 ) : (
-                  <EditIcon editStatus={this.editStatus} />
-                )
+                    <EditIcon editStatus={this.startEdit.bind(this, product.id)} />
+                  )
               }
             </div>
             <h6 className='card-subtitle mb-2 text-muted'>${product.price}</h6>
             <p>{product.description}</p>
-            <button className='btn btn-success' onClick={this.compareButtonClick}>{this.state.compareStatus ? 'Compare' : 'Remove'}</button>
+            <button className='btn btn-success' onClick={this.toggleCompareStatus.bind(this, product)}>{this.state.addedToComparison ? 'Remove' : 'Compare'}</button>
           </div>
         </div>
       </li>
@@ -64,4 +63,14 @@ class ProductItem extends React.Component {
   }
 }
 
-export default ProductItem;
+ProductItem.defaultProps = {
+  item: {},
+  itemCompareStatus: () => { },
+  updateProductTitle: () => { },
+};
+
+ProductItem.propTypes = {
+  item: PropTypes.object,
+  itemCompareStatus: PropTypes.func,
+  updateProductTitle: PropTypes.func,
+};
