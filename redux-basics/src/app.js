@@ -1,3 +1,3 @@
 import 'bootstrap';
-import './components/HelloComponent';
+import './components/app';
 import './stylesheets/main.sass';

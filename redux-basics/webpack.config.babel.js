@@ -7,6 +7,9 @@ const SRC_DIR = path.resolve(__dirname, 'src');
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const ROOT_PATH = path.resolve(SRC_DIR + '/app.js');
 const COMPONENTS_PATH = path.resolve(SRC_DIR + '/components');
+const REDUCERS_PATH = path.resolve(SRC_DIR + '/reducers');
+const CONTAINERS_PATH = path.resolve(SRC_DIR + '/containers');
+const ACTIONS_PATH = path.resolve(SRC_DIR + '/actions');
 
 module.exports = {
   entry: ROOT_PATH,
@@ -52,7 +55,10 @@ module.exports = {
   },
   resolve: {
     alias: {
-      Components: COMPONENTS_PATH
+      Components: COMPONENTS_PATH,
+      Containers: CONTAINERS_PATH,
+      Reducers: REDUCERS_PATH,
+      Actions: ACTIONS_PATH,
     },
     extensions: ['.jsx', '.js']
   },
