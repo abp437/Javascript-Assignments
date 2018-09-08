@@ -1,6 +1,12 @@
-"use strict";
+'use strict';
 
 const sum = (...restArgs) => restArgs.reduce((total, num) => total + num);
+
+console.log(sum(1, 3));
+
+console.log(sum(10, 20, 5));
+
+console.log(sum(2, 5, 80, 1, 10, 12));
 
 // Explanation:
 // Here I have used Rest Parameter for taking variable number of arguments.
@@ -14,9 +20,3 @@ const sum = (...restArgs) => restArgs.reduce((total, num) => total + num);
 // So reduce takes an array then performs some operation on it and then returns
 // a value as an argument to the next iteration until the last value is
 // evaluated and returned.
-
-console.log(sum(1, 3));
-
-console.log(sum(10, 20, 5));
-
-console.log(sum(2, 5, 80, 1, 10, 12));
