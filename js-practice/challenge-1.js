@@ -25,10 +25,10 @@ const sum = (...restArgs) => restArgs.reduce((total, num) => total + num);
 // evaluated and returned.
 
 console.log(sum(1, 3));
-//4
+// 4
 
 console.log(sum(10, 20, 5));
-//35
+// 35
 
 console.log(sum(2, 5, 80, 1, 10, 12));
-//110
+// 110
