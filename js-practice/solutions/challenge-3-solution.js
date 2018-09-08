@@ -1,20 +1,12 @@
-/* CHALLENGE 3 - Let
-
-Change code to match output.
-*/
-
 "use strict";
 
-const i = 10; // BEFORE: var i = 10;
+const i = 10;
 
-for (let i = 0; i < 5; i++) { // BEFORE: for (var i = 0; i < 5; i++) {
-  // some stuff
+for (let i = 0; i < 5; i++) {
   console.log(i);
 }
 
 console.log(i);
-// BEFORE: 5
-// AFTER: 10
 
 // Explanation:
 // This involves the Lexical/Block scoping of the identifiers, which means that
