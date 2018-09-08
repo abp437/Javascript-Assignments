@@ -18,6 +18,9 @@ console.log(i);
 // scopes are different, wherein `i` on line 10 follows the scope of the for
 // loop, thus becoming unaccessible outside it. So they never conflict with
 // eachother.
+// It should also be noted that in `for` loop, we can't have the iterator
+// identifier to be `const` since the identifier gets reassigned after each
+// iteration, so it needs to be `let`.
 
 // Read this amazing article for further reference:
 // https://blog.pragmatists.com/let-your-javascript-variables-be-constant-1633e56a948d
