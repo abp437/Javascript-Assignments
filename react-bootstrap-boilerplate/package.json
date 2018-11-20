@@ -1,7 +1,7 @@
 {
-  "name": "react bootstrap boilerplate",
+  "name": "react-bootstrap-boilerplate",
   "version": "1.0.0",
-  "description": "react bootstrap boilerplate",
+  "description": "React Bootstrap Boilerplate",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf ./dist/*",
