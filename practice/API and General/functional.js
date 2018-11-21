@@ -1,46 +1,27 @@
-// .prototype is accessible to functions only
-// Whenever we want to check the prototype of an object we need to access __proto__.constructor.prototype
-
-// __defineGetter__
-// __defineSetter__
-// __lookupGetter__
-// __lookupSetter__
-
-// Object.prototype -> constructor -> __proto__ generated of the object;
-
-// Function Object -> constructor is different than __proto__ of the Function Object since __proto__ points to the parent's constructor
-
-// Object.create creates a new object with prototype set to a certain object.
-
-// Maps and Sets
-// Higher order functions, when you return a function from a function.
-// Function Chaining
-// Currying
-// Modules
-// Promises, Async Await
-
-// Proxy and Reflection
-// Web Workers
-
-const cat = {
-  makeSound: function () {
-    console.log(this.sound);
+const animals = [{
+    "name": "Fluffykins",
+    "species": "Rabbit"
+  },
+  {
+    "name": "Hamilton",
+    "species": "Dog"
+  },
+  {
+    "name": "Ursula",
+    "species": "Cat"
+  },
+  {
+    "name": "Harold",
+    "species": "Fish"
+  },
+  {
+    "name": "Jimmy",
+    "species": "Fish"
+  },
+  {
+    "name": "Carol",
+    "species": "Dog"
   }
-};
-
-const mark = Object.create(cat);
-mark.sound = "Meow";
-mark.makeSound();
-
-const waffles = Object.create(cat);
-
-const animals = [
-  { "name": "Fluffykins", "species": "Rabbit" },
-  { "name": "Hamilton", "species": "Dog" },
-  { "name": "Ursula", "species": "Cat" },
-  { "name": "Harold", "species": "Fish" },
-  { "name": "Jimmy", "species": "Fish" },
-  { "name": "Carol", "species": "Dog" }
 ];
 
 // const dogs = [];
@@ -75,7 +56,6 @@ console.log(getDogs);
 console.log(getCats);
 console.log(getRabbits);
 console.log(getFishes);
-
 
 // Even Shorter Syntax:
 // I've used

@@ -70,13 +70,42 @@ function outer() {
   return function (nextParam) {
     console.log(firstImplicitParam);
     console.log(nextParam);
-  }
+  };
 }
 
 outer()(30);
 outer()(20);
 
-// Notice that the value of "externalParam" is always incremented since it's a global variable but the value of "firstImplicitParam" remains constant on each function call
+// Notice that the value of "externalParam" is always incremented since it's a global variable but the value of "firstImplicitParam" remains constant on each function call.
 // This proves that new local variables are created for each function call.
 // CONCLUSION:
 // NEW LOCAL VARIABLES GET CREATED ON EACH FUNCTION CALL.
+
+// But the major problem is that "externalParam" is accessible everywhere, we need to achieve total encapsulation.
+
+var add = (function () {
+  var counter = 0;
+  return function () {
+    counter += 1;
+    return counter;
+  };
+})();
+
+// The variable add is assigned the return value of a self-invoking function.
+// It sets the counter to zero (0), and returns a function expression.
+// The counter is protected by the scope of the anonymous function, and can only be changed using the add function.
+
+for (i = 0; i < 10; i++) {
+  setTimeout(function () {
+    console.log(add());
+  }, 5000);
+}
+
+for (j = 0; j < 10; j++) {
+  (function (currentValueOfI) {
+    console.log("Immediately Invoked Function Expresssion Called");
+    setTimeout(function () {
+      console.log(currentValueOfI);
+    }, 1000);
+  })(j);
+}
