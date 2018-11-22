@@ -5,11 +5,11 @@
 // So we need to find a better way of programming.
 
 var initiatePageLoadObject = {
-  init: function () {
+  init: function() {
     this.initVariables();
     this.bindEvents();
   },
-  initVariables: function () {
+  initVariables: function() {
     this.getButtonClick = document.getElementById("getDataBtn");
     this.getPara = document.getElementById("getDataPara");
     this.postButtonClick = document.getElementById("postDataBtn");
@@ -18,7 +18,7 @@ var initiatePageLoadObject = {
     this.postUserJob = document.getElementById("postUserJob");
     this.incrementValue = 0;
   },
-  bindEvents: function () {
+  bindEvents: function() {
     this.getButtonClick.addEventListener("click", () => {
       this.getData(this.incrementValue);
     }, false);
@@ -28,18 +28,18 @@ var initiatePageLoadObject = {
     this.targetInputValueUpdater(this.postUserName);
     this.targetInputValueUpdater(this.postUserJob);
   },
-  targetInputValueUpdater: function (targetElement, callback = function () { }) {
-    targetElement.addEventListener("input", function (event) {
+  targetInputValueUpdater: function(targetElement, callback = function() {}) {
+    targetElement.addEventListener("input", function(event) {
       this.value = event.target.value;
       callback();
     });
   },
-  getData: function () {
+  getData: function() {
     const that = this,
       myApiObj = new XMLHttpRequest();
     this.incrementValue++;
     myApiObj.open("GET", `https://reqres.in/api/products/${this.incrementValue}`, true);
-    myApiObj.onreadystatechange = function () {
+    myApiObj.onreadystatechange = function() {
       if (this.readyState === 4) {
         const targetResponse = JSON.parse(this.response);
         that.getPara.innerText = targetResponse.data.name;
@@ -47,7 +47,7 @@ var initiatePageLoadObject = {
     };
     myApiObj.send();
   },
-  fetchPostData: function () {
+  fetchPostData: function() {
     if (this.postUserName.value !== "" && this.postUserJob.value !== "") {
       return {
         user: this.postUserName.value,
@@ -57,7 +57,7 @@ var initiatePageLoadObject = {
       return null;
     }
   },
-  postData: function () {
+  postData: function() {
     const that = this,
       myApiObj = new XMLHttpRequest(),
       xhrSaver = this.fetchPostData();
@@ -66,7 +66,7 @@ var initiatePageLoadObject = {
     }
     myApiObj.open("POST", "https://reqres.in/api/users", true);
     myApiObj.setRequestHeader("Content-type", "application/json");
-    myApiObj.onreadystatechange = function () {
+    myApiObj.onreadystatechange = function() {
       if (this.readyState === 4) {
         const targetResponse = JSON.parse(this.response);
         that.postPara.innerText = `Name: ${targetResponse.user} Job: ${targetResponse.job}`;
@@ -84,7 +84,7 @@ var initiatePageLoadObject = {
 // I had initally made this function to be a function expression called 'initiatePageLoadFunction' but I made it
 // an IIFE since I knew that this function was to be executed just once in a page, also I wanted it to be never
 // accessible on the console thus achieveing total encapsulation as well.
-(function () {
+(function() {
   let incrementValue = 0;
   const getButtonClick = document.getElementById("getDataBtn"),
     getPara = document.getElementById("getDataPara"),
@@ -93,11 +93,11 @@ var initiatePageLoadObject = {
     postUserName = document.getElementById("postUserName"),
     postUserJob = document.getElementById("postUserJob"),
 
-    init = function () {
+    init = function() {
       bindEvents();
     },
 
-    bindEvents = function () {
+    bindEvents = function() {
       getButtonClick.addEventListener("click", () => {
         getData(incrementValue);
       }, false);
@@ -108,18 +108,18 @@ var initiatePageLoadObject = {
       targetInputValueUpdater(postUserJob);
     },
 
-    targetInputValueUpdater = function (targetElement, callback = function () { }) {
-      targetElement.addEventListener("input", function (event) {
+    targetInputValueUpdater = function(targetElement, callback = function() {}) {
+      targetElement.addEventListener("input", function(event) {
         this.value = event.target.value;
         callback();
       });
     },
 
-    getData = function () {
+    getData = function() {
       const myApiObj = new XMLHttpRequest();
       incrementValue++;
       myApiObj.open("GET", `https://reqres.in/api/products/${incrementValue}`, true);
-      myApiObj.onreadystatechange = function () {
+      myApiObj.onreadystatechange = function() {
         if (this.readyState === 4) {
           const targetResponse = JSON.parse(this.response);
           getPara.innerText = targetResponse.data.name;
@@ -128,7 +128,7 @@ var initiatePageLoadObject = {
       myApiObj.send();
     },
 
-    fetchPostData = function () {
+    fetchPostData = function() {
       if (postUserName.value !== "" && postUserJob.value !== "") {
         return {
           user: postUserName.value,
@@ -139,7 +139,7 @@ var initiatePageLoadObject = {
       }
     },
 
-    postData = function () {
+    postData = function() {
       const myApiObj = new XMLHttpRequest(),
         xhrSaver = fetchPostData();
       if (xhrSaver === null) {
@@ -147,7 +147,7 @@ var initiatePageLoadObject = {
       }
       myApiObj.open("POST", "https://reqres.in/api/users", true);
       myApiObj.setRequestHeader("Content-type", "application/json");
-      myApiObj.onreadystatechange = function () {
+      myApiObj.onreadystatechange = function() {
         if (this.readyState === 4) {
           const targetResponse = JSON.parse(this.response);
           postPara.innerText = `Name: ${targetResponse.user} Job: ${targetResponse.job}`;

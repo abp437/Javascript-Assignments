@@ -15,11 +15,11 @@ const myObject = Object.create(Object.prototype);
 console.dir(myObject);
 console.dir(myLiteral);
 
-const Car = function (color) {
+const Car = function(color) {
   this.color = color;
 }
 
-Car.prototype.getColor = function () {
+Car.prototype.getColor = function() {
   return this.color;
 }
 
@@ -50,10 +50,10 @@ const car2 = Object.create(Car.prototype);
 // new foo() -> The value of 'this' is the Object that's going to be constructed.
 // foo.call(obj) -> The value of 'this' is the context that we explicitly pass.
 
-function Bicycle(tirePressue) {
-  this.tirePressue = tirePressue;
+function Bicycle(tirePressure) {
+  this.tirePressure = tirePressure;
   this.inflateTires = function() {
-    this.tirePressue += 3;
+    this.tirePressure += 3;
   }
 }
 
@@ -63,3 +63,33 @@ function Mechanic(name) {
 
 var bicycle1 = new Bicycle(20);
 var mike = new Mechanic("Mike");
+mike.inflateTires = bicycle1.inflateTires;
+mike.inflateTires.call(bicycle1);
+
+// Whenever a Function Object is created in JS then it creates two objects in  the background.
+// A Variable to access the Function
+// A Prototype Object
+// To access the Prototype Object you can just use the function name and then access the Prototype Object using the . or [] notations.
+// This Protoype Object exists only on Function Objects.
+// This Prototype Object exists on all Function Objects regardless of whether they are creating objects or not.
+// If the Object doesn't have the property then the object lookup looks into the object's prototype for the property and if not found then returns "undefined".
+
+// Why do Prototypes exist in JS????????
+// FOR INHERITANCE.
+// FOR THE PROTOTYPE LOOKUP SINCE PROTOTYPE LOOKUP HAPPENS AT RUNTIME.
+
+function Employee(name) {
+  this.name = name;
+}
+
+Employee.prototype.company = "EverScripts";
+Employee.prototype.playPranks = function() {
+  console.log("Prank Played");
+};
+
+var emp1 = new Employee("Akshay");
+var emp2 = new Employee("Steve");
+
+// A function gets the ".prototype" property in it while the Object generated from that function or any other object in general gets "__proto__" propert attached to it.
+// So just look at this now:
+console.log(Employee.prototype === emp1.__proto__);

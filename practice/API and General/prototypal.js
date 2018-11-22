@@ -19,7 +19,7 @@ const makeGladiator = (name, attack, defense, hitPoints) => {
     attack,
     defense,
     hitPoints,
-    sayName: function () {
+    sayName: function() {
       console.log(`Hello my name is ${this.name}`);
     }
   }
@@ -34,15 +34,17 @@ function Gladiator(name, attack, defense, hitPoints) {
   this.hitPoints = hitPoints;
   this.weapon = "Sword";
 }
-Gladiator.prototype.sayName = function () {
+Gladiator.prototype.sayName = function() {
   console.log('Gladiator Prototype called.');
   console.log(`Hello my name is ${this.name}`);
 }
+
 function v2makeGladiator(name, attack, defense, hitPoints) {
   return new Gladiator(name, attack, defense, hitPoints);
 }
 const v2jesse = v2makeGladiator('Jesse', 10, 12, 10),
   v2john = v2makeGladiator('John', 12, 10, 12);
+
 function Human(name, attack, defense, hitPoints) {
   this.name = name;
   this.attack = attack;
@@ -50,6 +52,7 @@ function Human(name, attack, defense, hitPoints) {
   this.hitPoints = hitPoints;
   this.weapon = new Weapon(1, 1);
 }
+
 function Weapon(howManyDie, typeOfDie) {
   this.howManyDie = howManyDie;
   this.typeOfDie = typeOfDie;
@@ -64,6 +67,7 @@ Human.prototype = new Gladiator();
 Human.prototype.constructor = Human;
 const v3jesse = new Human('Jesse', 10, 12, 10),
   v3john = new Human('John', 12, 10, 12);
+
 function Animal(name, attack, defense, hitPoints) {
   this.name = name;
   this.attack = attack;
@@ -76,7 +80,7 @@ Animal.prototype.constructor = Animal;
 // This Animal prototype method overrides the Gladiator prototype method
 // If we didn't define this method then the object looks up in the
 // inheritance chain for existence of the method.
-Animal.prototype.sayName = function () {
+Animal.prototype.sayName = function() {
   console.log(`Hey Human mein name ist ${this.name}`);
 }
 
@@ -94,7 +98,7 @@ Animal.prototype.sayName = function () {
 
 
 const cat = {
-  makeSound: function () {
+  makeSound: function() {
     console.log(this.sound);
   }
 };

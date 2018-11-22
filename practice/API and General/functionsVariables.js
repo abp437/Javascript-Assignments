@@ -3,7 +3,7 @@ function foo() {
 }
 
 // Function expressions are possible in JS due to them being first class functions.
-var bar = function () {
+var bar = function() {
   console.log("Function Bar is Called");
 };
 
@@ -67,7 +67,7 @@ function outer() {
   externalParam++;
   firstImplicitParam++;
   console.log(externalParam);
-  return function (nextParam) {
+  return function(nextParam) {
     console.log(firstImplicitParam);
     console.log(nextParam);
   };
@@ -83,9 +83,9 @@ outer()(20);
 
 // But the major problem is that "externalParam" is accessible everywhere, we need to achieve total encapsulation.
 
-var add = (function () {
+var add = (function() {
   var counter = 0;
-  return function () {
+  return function() {
     counter += 1;
     return counter;
   };
@@ -96,15 +96,15 @@ var add = (function () {
 // The counter is protected by the scope of the anonymous function, and can only be changed using the add function.
 
 for (i = 0; i < 10; i++) {
-  setTimeout(function () {
+  setTimeout(function() {
     console.log(add());
   }, 5000);
 }
 
 for (j = 0; j < 10; j++) {
-  (function (currentValueOfI) {
+  (function(currentValueOfI) {
     console.log("Immediately Invoked Function Expresssion Called");
-    setTimeout(function () {
+    setTimeout(function() {
       console.log(currentValueOfI);
     }, 1000);
   })(j);
