@@ -9,6 +9,7 @@ var initiatePageLoadObject = {
     this.initVariables();
     this.bindEvents();
   },
+
   initVariables: function() {
     this.getButtonClick = document.getElementById("getDataBtn");
     this.getPara = document.getElementById("getDataPara");
@@ -18,6 +19,7 @@ var initiatePageLoadObject = {
     this.postUserJob = document.getElementById("postUserJob");
     this.incrementValue = 0;
   },
+
   bindEvents: function() {
     this.getButtonClick.addEventListener("click", () => {
       this.getData(this.incrementValue);
@@ -28,12 +30,14 @@ var initiatePageLoadObject = {
     this.targetInputValueUpdater(this.postUserName);
     this.targetInputValueUpdater(this.postUserJob);
   },
+
   targetInputValueUpdater: function(targetElement, callback = function() {}) {
     targetElement.addEventListener("input", function(event) {
       this.value = event.target.value;
       callback();
     });
   },
+
   getData: function() {
     const that = this,
       myApiObj = new XMLHttpRequest();
@@ -47,23 +51,23 @@ var initiatePageLoadObject = {
     };
     myApiObj.send();
   },
+
   fetchPostData: function() {
     if (this.postUserName.value !== "" && this.postUserJob.value !== "") {
       return {
         user: this.postUserName.value,
         job: this.postUserJob.value
-      }
+      };
     } else {
       return null;
     }
   },
+
   postData: function() {
     const that = this,
       myApiObj = new XMLHttpRequest(),
       xhrSaver = this.fetchPostData();
-    if (xhrSaver === null) {
-      return;
-    }
+    if (xhrSaver === null) return;
     myApiObj.open("POST", "https://reqres.in/api/users", true);
     myApiObj.setRequestHeader("Content-type", "application/json");
     myApiObj.onreadystatechange = function() {
@@ -133,7 +137,7 @@ var initiatePageLoadObject = {
         return {
           user: postUserName.value,
           job: postUserJob.value
-        }
+        };
       } else {
         return null;
       }

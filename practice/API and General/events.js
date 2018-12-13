@@ -29,17 +29,14 @@ anchorElement.addEventListener("click", function(event) {
   event.preventDefault();
 });
 
+
 // Input fired on every input action in real time.
-inputElement.addEventListener("input", function(event) {
-  console.log(event.type, event.target);
-});
 // Change fired on blur and only when there's a change in the input's value.
-inputElement.addEventListener("change", function(event) {
-  console.log(event.type, event.target);
-});
 // Blur fired on every blur action regardless the value of the input.
-inputElement.addEventListener("blur", function(event) {
-  console.log(event.type);
+["input", "change", "blur"].forEach(function(item) {
+  inputElement.addEventListener(item, function(event) {
+    console.log(event.type, event.target);
+  }, false);
 });
 
 // Difference between stopPropagation and stopImmediatePropagation:
@@ -78,9 +75,10 @@ function clicked(event) {
 
 var handleEventObjectTester = {
   init: function init() {
-    document.getElementById("buttonOne").addEventListener("click", this);
-    document.getElementById("buttonOne").addEventListener("blur", this);
-    document.getElementById("buttonOne").addEventListener("focus", this);
+    const that = this;
+    ["click", "focus", "blur"].forEach(function(item) {
+      document.getElementById("buttonOne").addEventListener(item, that);
+    });
   },
   handleEvent: function handleEvent(event) {
     switch (event.type) {
@@ -109,19 +107,11 @@ document.addEventListener("DOMContentLoaded", function() {
 // keydown -> mousedown
 // keyup -> mouseup
 // keypress -> click
-keyboardElement.addEventListener("keydown", function(event) {
-  var char = event.char || event.charCode || event.which;
-  console.log(String.fromCharCode(char), event.type);
-});
-
-keyboardElement.addEventListener("keyup", function(event) {
-  var char = event.char || event.charCode || event.which;
-  console.log(String.fromCharCode(char), event.type);
-});
-
-keyboardElement.addEventListener("keypress", function(event) {
-  var char = event.char || event.charCode || event.which;
-  console.log(String.fromCharCode(char), event.type);
+["keydown", "keyup", "keypress"].forEach(function(item) {
+  keyboardElement.addEventListener(item, function(event) {
+    var char = event.char || event.charCode || event.which;
+    console.log(String.fromCharCode(char), event.type);
+  });
 });
 
 // Don't use MouseOver and MouseOut.
@@ -146,7 +136,7 @@ keyboardElement.addEventListener("keypress", function(event) {
     return paragraphElement;
   }
 
-  function appendElements(parent = document.body, element) {
+  function appendElements(parent, element) {
     parent.appendChild(element);
   }
 
@@ -201,7 +191,7 @@ keyboardElement.addEventListener("keypress", function(event) {
 
     p.textContent = ' this is new content';
     p.setAttribute('data-thing', 123);
-    p.title = 'NEW TITLE'
+    p.title = 'NEW TITLE';
 
     let span = document.createElement('span');
     span.textContent = ' SOME SPAN TEXT';
