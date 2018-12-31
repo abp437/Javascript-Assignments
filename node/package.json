@@ -4,10 +4,19 @@
   "description": "This is a Basic Node REST API",
   "main": "server.js",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "mongodb": "^3.1.10"
+    "mongodb": "^3.1.10",
+    "mongoose": "^5.4.1",
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.11.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.12.0",
     "nodemon": "^1.18.9"
   },
   "scripts": {
@@ -26,5 +35,5 @@
   "bugs": {
     "url": "https://github.com/abp437/Javascript-Assignments/issues"
   },
-  "homepage": "https://github.com/abp437/Javascript-Assignments#readme"
+  "homepage": "https://github.com/abp437/Javascript-Assignments/node#readme"
 }
