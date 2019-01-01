@@ -6,6 +6,7 @@ const express = require('express'),
   assert = require('assert'),
   bodyParser = require('body-parser'),
   morgan = require('morgan'),
+  cors = require('cors'),
   {
     dbName,
     dbUrl,
@@ -53,6 +54,9 @@ const express = require('express'),
 
 // Applying Development Logs and Body Parser Middleware
 app.use(morgan('dev'));
+app.use(cors({
+  origin: 'http://localhost:8000',
+}));
 app.use(bodyParser.urlencoded({
   extended: false,
 }));
