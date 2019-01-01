@@ -3,37 +3,39 @@ const express = require('express'),
     MongoClient,
   } = require('mongodb'),
   assert = require('assert'),
-  dbUrl = 'mongodb://localhost:27017',
-  dbName = 'users',
+  bodyParser = require('body-parser'),
+  {
+    dbName,
+    dbUrl,
+    port,
+  } = require('./config'),
   dbClient = new MongoClient(dbUrl),
-  port = process.env.PORT || 3000,
   app = express(),
 
-  // Create User
-  insertUser = (db, callback) => {
-    const docs = db.collection('users').insertOne({
-      name: 'Akshay',
+  // Create Todo
+  insertTodo = (db, callback) => {
+    const docs = db.collection(dbName).insertOne({
+      name: 'Sourabh',
     }, (err, response) => {
       console.log(response.ops);
     });
     callback(docs);
   },
 
-  // Read User
-  retrieveUser = (db, callback) => {
-    db.collection('users').find({
+  // Read Todo
+  retrieveTodo = (db, callback) => {
+    db.collection(dbName).find({
       name: 'Akshay',
     }).toArray((err, docs) => {
-      assert.equal(err, null);
-      console.log('Found the Following Records');
-      console.log(docs);
+      if (err) throw err;
       callback(docs);
+      return docs;
     });
   },
 
-  // Delete User
-  deleteUser = (db) => {
-    db.collection('users').deleteMany({
+  // Delete Todo
+  deleteTodo = (db) => {
+    db.collection(dbName).deleteMany({
       name: 'Akshay',
     }, (err) => {
       if (err) throw err;
@@ -41,15 +43,31 @@ const express = require('express'),
     });
   };
 
+// Applying Body Parser Middleware
+app.use(bodyParser.urlencoded({
+  extended: false,
+}));
+app.use(bodyParser.json());
+
 // DB Connection
 dbClient.connect((err) => {
   const db = dbClient.db(dbName);
   assert.equal(null, err);
   console.log('Connected To Database Server');
-  insertUser(db, () => {});
-  retrieveUser(db, () => {});
-  deleteUser(db, () => {});
-  dbClient.close();
+  app.get('/todos', (req, res) => {
+    db.collection(dbName).find({
+      name: 'Sourabh',
+    }).toArray((error, docs) => {
+      if (error) throw error;
+      res.send(docs);
+    });
+  });
+
+  // insertTodo(db, () => {});
+
+  app.delete('/todos/delete', (req, res) => {
+    deleteTodo(db, () => {});
+  });
 });
 
 // Routes For REST API
