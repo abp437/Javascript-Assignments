@@ -1,9 +1,11 @@
 const express = require('express'),
   {
     MongoClient,
+    ObjectID,
   } = require('mongodb'),
   assert = require('assert'),
   bodyParser = require('body-parser'),
+  morgan = require('morgan'),
   {
     dbName,
     dbUrl,
@@ -12,38 +14,45 @@ const express = require('express'),
   dbClient = new MongoClient(dbUrl),
   app = express(),
 
-  // Create Todo
-  insertTodo = (db, callback) => {
-    const docs = db.collection(dbName).insertOne({
-      name: 'Sourabh',
-    }, (err, response) => {
-      console.log(response.ops);
+  // Get All Todos
+  getAllTodos = (db, res) => {
+    db.collection(dbName).find().toArray((error, docs) => {
+      if (error) throw error;
+      res.send(docs);
     });
-    callback(docs);
   },
 
-  // Read Todo
-  retrieveTodo = (db, callback) => {
-    db.collection(dbName).find({
-      name: 'Akshay',
-    }).toArray((err, docs) => {
+  // Create Todo
+  insertTodo = (db, requestBody, res) => {
+    db.collection(dbName).insertOne(requestBody, (err) => {
       if (err) throw err;
-      callback(docs);
-      return docs;
+      res.send('Inserted Successfully');
     });
+  },
+
+  // Get Todo
+  getTodo = (db, requestBody, res) => {
+    db.collection(dbName).find(requestBody).toArray((err, docs) => {
+      if (err) throw err;
+      res.send(docs);
+    });
+  },
+
+  // Update Todo
+  updateTodo = (db, requestBody) => {
+    db.collection(dbName).update(requestBody);
   },
 
   // Delete Todo
-  deleteTodo = (db) => {
-    db.collection(dbName).deleteMany({
-      name: 'Akshay',
-    }, (err) => {
+  deleteTodo = (db, requestBody, res) => {
+    db.collection(dbName).deleteOne(requestBody, (err) => {
       if (err) throw err;
-      console.log('Deleted Successfully');
+      res.send('Deleted Successfully');
     });
   };
 
-// Applying Body Parser Middleware
+// Applying Development Logs and Body Parser Middleware
+app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
   extended: false,
 }));
@@ -54,24 +63,28 @@ dbClient.connect((err) => {
   const db = dbClient.db(dbName);
   assert.equal(null, err);
   console.log('Connected To Database Server');
+
+  // Routes For REST API
   app.get('/todos', (req, res) => {
-    db.collection(dbName).find({
-      name: 'Sourabh',
-    }).toArray((error, docs) => {
-      if (error) throw error;
-      res.send(docs);
-    });
+    getAllTodos(db, res);
   });
 
-  // insertTodo(db, () => {});
-
-  app.delete('/todos/delete', (req, res) => {
-    deleteTodo(db, () => {});
+  app.post('/todo', (req, res) => {
+    insertTodo(db, req.body, res);
   });
+
+  app.get('/todo/:id', (req, res) => {
+    getTodo(db, req.body, res);
+  });
+
+  app.put('/todo/:id', (req, res) => {
+    res.send(updateTodo(db, req.body));
+  });
+
+  app.delete('/todo/:id', (req, res) => {
+    deleteTodo(db, req.body, res);
+  });
+
+  // Server Start
+  app.listen(port, () => console.log(`Listening on Port ${port}`));
 });
-
-// Routes For REST API
-app.get('/', (req, res) => res.send('Hello World'));
-
-// Server Start
-app.listen(port, () => console.log(`Listening on Port ${port}`));
