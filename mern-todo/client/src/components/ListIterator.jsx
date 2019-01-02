@@ -33,7 +33,7 @@ class ListIterator extends Component {
         {sortedListItems.map(item => (
           <li className="list-group-item d-flex justify-content-between align-items-center" key={item._id}>
             <span>{item.description}</span>
-            <button className="btn btn-danger" type="button" onClick={() => deleteItem(item.key)}>x</button>
+            <button className="btn btn-danger" type="button" onClick={() => deleteItem(item._id)}>x</button>
           </li>
         ))}
       </ul>

@@ -28,14 +28,23 @@ class App extends Component {
 
   handleDelete(elementToBeDeleted) {
     const items = this.state.items.filter((item) => {
-      if (item.key !== elementToBeDeleted) {
+      if (item._id !== elementToBeDeleted) {
         return item;
       }
       return null;
     });
-    this.setState({
-      items,
-    });
+    axios.delete('http://localhost:3000/todo', {
+      data: { _id: elementToBeDeleted },
+    })
+      .then((response) => {
+        this.setState({
+          items,
+        });
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   handleUserInput(valueOfUserInput) {

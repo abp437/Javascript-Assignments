@@ -27,8 +27,7 @@ const express = require('express'),
   insertTodo = (db, requestBody, res) => {
     db.collection(dbName).insertOne(requestBody, (err, docs) => {
       if (err) throw err;
-      const objectId = requestBody._id;
-      res.send(objectId);
+      res.send(requestBody._id);
     });
   },
 
@@ -41,13 +40,16 @@ const express = require('express'),
   },
 
   // Update Todo
-  updateTodo = (db, requestBody) => {
-    db.collection(dbName).update(requestBody);
-  },
+  // updateTodo = (db, requestBody) => {
+  //   db.collection(dbName).update(requestBody);
+  // },
 
   // Delete Todo
   deleteTodo = (db, requestBody, res) => {
-    db.collection(dbName).deleteOne(requestBody, (err) => {
+    const id = requestBody._id;
+    db.collection(dbName).deleteOne({
+      _id: new ObjectID(id),
+    }, (err) => {
       if (err) throw err;
       res.send('Deleted Successfully');
     });
@@ -82,9 +84,9 @@ dbClient.connect((err) => {
     getTodo(db, req.body, res);
   });
 
-  app.put('/todo', (req, res) => {
-    updateTodo(db, req.body, res);
-  });
+  // app.put('/todo', (req, res) => {
+  //   updateTodo(db, req.body, res);
+  // });
 
   app.delete('/todo', (req, res) => {
     deleteTodo(db, req.body, res);
