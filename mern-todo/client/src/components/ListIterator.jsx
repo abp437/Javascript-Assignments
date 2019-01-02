@@ -13,8 +13,8 @@ class ListIterator extends Component {
   sortArrays() {
     const listItems = [...this.props.listItems];
     return listItems.sort((elem1, elem2) => {
-      const tempVar1 = elem1.text,
-        tempVar2 = elem2.text;
+      const tempVar1 = elem1.description,
+        tempVar2 = elem2.description;
       if (tempVar1 < tempVar2) {
         return -1;
       }
@@ -31,8 +31,8 @@ class ListIterator extends Component {
     return (
       <ul className="list-group">
         {sortedListItems.map(item => (
-          <li className="list-group-item d-flex justify-content-between align-items-center" key={item.key}>
-            <span>{item.text}</span>
+          <li className="list-group-item d-flex justify-content-between align-items-center" key={item._id}>
+            <span>{item.description}</span>
             <button className="btn btn-danger" type="button" onClick={() => deleteItem(item.key)}>x</button>
           </li>
         ))}

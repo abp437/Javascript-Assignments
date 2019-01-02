@@ -25,9 +25,10 @@ const express = require('express'),
 
   // Create Todo
   insertTodo = (db, requestBody, res) => {
-    db.collection(dbName).insertOne(requestBody, (err) => {
+    db.collection(dbName).insertOne(requestBody, (err, docs) => {
       if (err) throw err;
-      res.send('Inserted Successfully');
+      const objectId = requestBody._id;
+      res.send(objectId);
     });
   },
 
@@ -77,15 +78,15 @@ dbClient.connect((err) => {
     insertTodo(db, req.body, res);
   });
 
-  app.get('/todo/:id', (req, res) => {
+  app.get('/todo', (req, res) => {
     getTodo(db, req.body, res);
   });
 
-  app.put('/todo/:id', (req, res) => {
-    res.send(updateTodo(db, req.body));
+  app.put('/todo', (req, res) => {
+    updateTodo(db, req.body, res);
   });
 
-  app.delete('/todo/:id', (req, res) => {
+  app.delete('/todo', (req, res) => {
     deleteTodo(db, req.body, res);
   });
 

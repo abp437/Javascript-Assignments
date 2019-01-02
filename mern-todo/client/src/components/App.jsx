@@ -13,6 +13,19 @@ class App extends Component {
     this.handleUserInput = this.handleUserInput.bind(this);
   }
 
+  componentDidMount() {
+    axios.get('http://localhost:3000/todos')
+      .then((response) => {
+        this.setState({
+          items: response.data,
+        });
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   handleDelete(elementToBeDeleted) {
     const items = this.state.items.filter((item) => {
       if (item.key !== elementToBeDeleted) {
@@ -34,14 +47,14 @@ class App extends Component {
       }
     });
     if (!duplicateInput) {
-      items.push({
-        key: new Date().valueOf(),
-        text: valueOfUserInput,
-      });
       axios.post('http://localhost:3000/todo', {
         description: valueOfUserInput,
       })
         .then((response) => {
+          items.push({
+            key: response.data,
+            description: valueOfUserInput,
+          });
           this.setState({
             items,
           });
