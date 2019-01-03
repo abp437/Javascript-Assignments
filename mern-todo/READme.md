@@ -21,7 +21,7 @@ Perform the operations in following sections in separate CLIs, order matters:
 # 2 - Starting Off Server:
 - cd server
 - npm install
-- nodemon server.js
+- npm run serve
 
 # 3 - Starting Off the Client:
 - cd client
