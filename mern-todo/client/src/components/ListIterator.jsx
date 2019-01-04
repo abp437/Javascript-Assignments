@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 class ListIterator extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      listItems: this.props.listItems,
-    };
     this.sortArrays = this.sortArrays.bind(this);
   }
 

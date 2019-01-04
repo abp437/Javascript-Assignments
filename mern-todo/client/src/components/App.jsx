@@ -2,6 +2,7 @@ import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ListIterator from 'Components/ListIterator';
 import FormComponent from 'Components/FormComponent';
+import { backendUrl } from 'Config';
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/todos')
+    axios.get(`${backendUrl}/todos`)
       .then((response) => {
         this.setState({
           items: response.data,
@@ -27,13 +28,8 @@ class App extends Component {
   }
 
   handleDelete(elementToBeDeleted) {
-    const items = this.state.items.filter((item) => {
-      if (item._id !== elementToBeDeleted) {
-        return item;
-      }
-      return null;
-    });
-    axios.delete('http://localhost:3000/todo', {
+    const items = this.state.items.filter(item => item._id !== elementToBeDeleted);
+    axios.delete(`${backendUrl}/todo`, {
       data: { _id: elementToBeDeleted },
     })
       .then((response) => {
@@ -48,33 +44,28 @@ class App extends Component {
   }
 
   handleUserInput(valueOfUserInput) {
-    const items = [...this.state.items];
-    let duplicateInput = false;
-    items.forEach((item) => {
-      if (Object.values(item).indexOf(valueOfUserInput) > -1) {
-        duplicateInput = true;
-      }
-    });
-    if (!duplicateInput) {
-      axios.post('http://localhost:3000/todo', {
-        description: valueOfUserInput,
-      })
-        .then((response) => {
-          items.push({
-            key: response.data,
-            description: valueOfUserInput,
-          });
-          this.setState({
-            items,
-          });
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
+    const items = [...this.state.items],
+      duplicateInput = items.some(item => item.description.toLowerCase() === valueOfUserInput.toLowerCase());
+    if (duplicateInput) {
       alert('Duplicate Input');
+      return;
     }
+    axios.post(`${backendUrl}/todo`, {
+      description: valueOfUserInput,
+    })
+      .then((response) => {
+        items.push({
+          _id: response.data,
+          description: valueOfUserInput,
+        });
+        this.setState({
+          items,
+        });
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {

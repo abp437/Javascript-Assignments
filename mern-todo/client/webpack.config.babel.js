@@ -7,6 +7,7 @@ const SRC_DIR = path.resolve(__dirname, 'src'),
   DIST_DIR = path.resolve(__dirname, 'dist'),
   ROOT_PATH = path.resolve(`${SRC_DIR}/app.js`),
   COMPONENTS_PATH = path.resolve(`${SRC_DIR}/components`),
+  CONFIG_PATH = path.resolve(`${SRC_DIR}/config`),
   STYLESHEETS_PATH = path.resolve(`${SRC_DIR}/stylesheets`);
 
 module.exports = {
@@ -54,6 +55,7 @@ module.exports = {
     alias: {
       Components: COMPONENTS_PATH,
       Stylesheets: STYLESHEETS_PATH,
+      Config: CONFIG_PATH,
     },
     extensions: ['.jsx', '.js'],
   },
