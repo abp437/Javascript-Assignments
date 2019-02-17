@@ -1,3 +1,3 @@
 import 'bootstrap';
-import './components/YoutubeApp';
+import './components/youtube_app';
 import './stylesheets/main.sass';

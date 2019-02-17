@@ -1,2 +1,16 @@
 @import '~bootstrap/scss/bootstrap'
 
+$font-sizes: 36
+$font-weights: 9
+
+@for $i from 10 through $font-sizes
+  .fs-#{$i}
+    font-size: #{$i}px
+    line-height: #{$i+2}px
+
+@for $i from 3 through $font-weights
+  .fw-#{$i*100}
+    font-weight: #{$i*100}
+
+.cursor-pointer
+  cursor: pointer
