@@ -1,0 +1,39 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": "airbnb",
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "indent": "off",
+    "no-tabs": "off",
+    "one-var": ["error", "always"],
+    "no-unused-expressions": 0,
+    "no-undef": 0,
+    "no-use-before-define": 0,
+    "func-names": 0,
+    "no-extra-boolean-cast": 0,
+    "comma-dangle": ["error", {
+      "arrays": "never",
+      "objects": "always",
+      "imports": "always-multiline",
+      "exports": "only-multiline",
+      "functions": "ignore"
+    }],
+    "max-len": ["error", {
+      "code": 220
+    }],
+    "consistent-return": "off",
+    "vars-on-top": 0,
+    "no-alert": 0,
+  },
+  "globals": {
+    "React": true,
+    "jQuery": true,
+  }
+}
