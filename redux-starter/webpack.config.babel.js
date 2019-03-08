@@ -6,11 +6,11 @@ import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 
 const SRC_DIR = path.resolve(__dirname, 'src'),
   DIST_DIR = path.resolve(__dirname, 'dist'),
-  ROOT_PATH = path.resolve(SRC_DIR + '/app.js'),
-  COMPONENTS_PATH = path.resolve(SRC_DIR + '/components'),
-  REDUCERS_PATH = path.resolve(SRC_DIR + '/reducers'),
-  CONTAINERS_PATH = path.resolve(SRC_DIR + '/containers'),
-  ACTIONS_PATH = path.resolve(SRC_DIR + '/actions');
+  ROOT_PATH = path.resolve(`${SRC_DIR}/app.js`),
+  COMPONENTS_PATH = path.resolve(`${SRC_DIR}/components`),
+  REDUCERS_PATH = path.resolve(`${SRC_DIR}/reducers`),
+  CONTAINERS_PATH = path.resolve(`${SRC_DIR}/containers`),
+  ACTIONS_PATH = path.resolve(`${SRC_DIR}/actions`);
 
 module.exports = (env) => {
   const isProduction = env.production === true;
@@ -18,7 +18,7 @@ module.exports = (env) => {
     entry: ROOT_PATH,
     output: {
       path: DIST_DIR,
-      filename: '[hash].js'
+      filename: '[hash].js',
     },
     module: {
       rules: [
@@ -35,7 +35,7 @@ module.exports = (env) => {
             {
               loader: 'eslint-loader',
             }
-          ]
+          ],
         },
         {
           test: /\.sass$/,
@@ -45,24 +45,24 @@ module.exports = (env) => {
               loader: 'css-loader',
               options: {
                 minimize: {
-                  safe: true
-                }
-              }
+                  safe: true,
+                },
+              },
             },
             {
-              loader: 'sass-loader'
+              loader: 'sass-loader',
             }
-          ]
+          ],
         },
         {
           test: /\.(png|jpg|gif)$/,
           use: [
             {
-              loader: 'file-loader'
+              loader: 'file-loader',
             }
-          ]
+          ],
         }
-      ]
+      ],
     },
     resolve: {
       alias: {
@@ -71,20 +71,21 @@ module.exports = (env) => {
         Reducers: REDUCERS_PATH,
         Actions: ACTIONS_PATH,
       },
-      extensions: ['.jsx', '.js']
+      extensions: ['.jsx', '.js'],
     },
     devServer: {
-      port: 8000
+      port: 5000,
+      historyApiFallback: true,
     },
     plugins: [
       new webpack.ProvidePlugin({
         React: 'react',
         $: 'jquery',
-        jQuery: 'jquery'
+        jQuery: 'jquery',
       }),
       new MiniCssExtractPlugin('main.css'),
       new HtmlWebpackPlugin({
-        template: 'src/index.html'
+        template: 'src/index.html',
       })
     ],
     optimization: {
