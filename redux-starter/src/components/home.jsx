@@ -1,15 +1,14 @@
+import AddToDo from './addToDo';
 import Todos from './todos';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [
-        { id: 1, content: 'Buy some Milk', },
-        { id: 2, content: 'Play Mario Kart', }
-      ],
+      todos: [],
     };
     this.deleteTodo = this.deleteTodo.bind(this);
+    this.addTodo = this.addTodo.bind(this);
   }
 
   deleteTodo(id) {
@@ -20,11 +19,23 @@ class Home extends React.Component {
     });
   }
 
+  addTodo(todo) {
+    const receivedTodo = todo,
+      { todos, } = this.state;
+    let setTodos = [];
+    receivedTodo.id = Math.random() * 10;
+    setTodos = [...todos, receivedTodo];
+    this.setState({
+      todos: setTodos,
+    });
+  }
+
   render() {
     const { todos, } = this.state;
     return (
       <div className="container">
         <h1 className="center blue-text">Todos</h1>
+        <AddToDo addTodo={this.addTodo} />
         <Todos todos={todos} deleteTodo={this.deleteTodo} />
       </div>
     );
