@@ -11,7 +11,7 @@ const App = () => (
       <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
+        <Route path="/about" render={routeProps => <About {...routeProps} title="About" />} />
         <Route path="/contact" component={Contact} />
       </Switch>
     </div>
