@@ -30,10 +30,10 @@
     }],
     "consistent-return": "off",
     "vars-on-top": 0,
-    "no-alert": 0,
+    "no-alert": 0
   },
   "globals": {
     "React": true,
-    "jQuery": true,
+    "jQuery": true
   }
 }

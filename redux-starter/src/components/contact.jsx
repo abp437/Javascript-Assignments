@@ -1,43 +1,26 @@
-import axios from 'axios';
+import PropTypes from 'prop-types';
+import TextColor from './higherOrderComponents/textColor';
 
-export default class Contact extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      posts: [],
-    };
-  }
+const Contact = (props) => {
+  const { generatedClass, } = props;
+  return (
+    <div className={generatedClass}>
+      <h4 className="center">Contact</h4>
+      <p className="center">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Pariatur amet reprehenderit porro? Quas ipsum ipsam quisquam cumque, ad, corrupti voluptates
+        quis ex sunt harum necessitatibus cum optio sed doloribus quos.
+      </p>
+    </div>
+  );
+};
 
-  componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => {
-        this.setState({
-          posts: response.data.slice(0, 10),
-        });
-      });
-  }
+Contact.propTypes = {
+  generatedClass: PropTypes.string,
+};
 
-  render() {
-    const { posts, } = this.state,
-      postList = posts.length ? (
-        posts.map(post => (
-          <div className="post card" key={post.id}>
-            <div className="card-content">
-              <span className="card-title">{post.title}</span>
-              <p>{post.body}</p>
-            </div>
-          </div>
-        ))
-      ) : (
-        <div className="center">No posts yet</div>
-      );
-    return (
-      <div>
-        <h4 className="center">Axios</h4>
-        <div className="container">
-          {postList}
-        </div>
-      </div>
-    );
-  }
-}
+Contact.defaultProps = {
+  generatedClass: '',
+};
+
+export default TextColor(Contact);
