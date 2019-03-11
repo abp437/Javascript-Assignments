@@ -33,11 +33,9 @@ export default class PostsList extends React.Component {
         <p className="center">No posts yet</p>
       );
     return (
-      <div>
+      <div className="container">
         <h4 className="center">Posts List</h4>
-        <div className="container">
-          {postList}
-        </div>
+        {postList}
       </div>
     );
   }
