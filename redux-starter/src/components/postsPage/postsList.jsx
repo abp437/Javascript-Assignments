@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export default class PostsList extends React.Component {

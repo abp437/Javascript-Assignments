@@ -3,11 +3,13 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const SRC_DIR = path.resolve(__dirname, 'src'),
   DIST_DIR = path.resolve(__dirname, 'dist'),
   ROOT_PATH = path.resolve(`${SRC_DIR}/app.js`),
   COMPONENTS_PATH = path.resolve(`${SRC_DIR}/components`),
+  PIZAA_FILE_PATH = path.join(__dirname, './src/components/pizzaPage/pizzaData.json'),
   REDUCERS_PATH = path.resolve(`${SRC_DIR}/reducers`),
   CONTAINERS_PATH = path.resolve(`${SRC_DIR}/containers`),
   ACTIONS_PATH = path.resolve(`${SRC_DIR}/actions`);
@@ -80,9 +82,13 @@ module.exports = (env) => {
     plugins: [
       new webpack.ProvidePlugin({
         React: 'react',
-        $: 'jquery',
         jQuery: 'jquery',
+        axios: 'axios',
+        PropTypes: 'prop-types',
       }),
+      new CopyWebpackPlugin([
+        { from: PIZAA_FILE_PATH, to: DIST_DIR, force: true, }
+      ]),
       new MiniCssExtractPlugin('main.css'),
       new HtmlWebpackPlugin({
         template: 'src/index.html',

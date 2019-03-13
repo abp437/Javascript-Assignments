@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import TextColor from './higherOrderComponents/textColor';
 
 const About = (props) => {

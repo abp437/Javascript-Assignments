@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-import axios from 'axios';
 import TextColor from '../higherOrderComponents/textColor';
 
 class Post extends React.Component {

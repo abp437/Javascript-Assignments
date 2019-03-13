@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './homePage/home';
 import About from './about';
 import PostsList from './postsPage/postsList';
+import PizzaHome from './pizzaPage/pizzaHome';
 import Post from './postsPage/post';
 import Contact from './contact';
 import Navbar from './navbar';
@@ -17,6 +18,7 @@ const App = () => (
         <Route exact path="/posts" component={PostsList} />
         <Route path="/posts/:id" component={Post} />
         <Route path="/contact" component={Contact} />
+        <Route path="/pizzas" component={PizzaHome} />
       </Switch>
     </div>
   </BrowserRouter>

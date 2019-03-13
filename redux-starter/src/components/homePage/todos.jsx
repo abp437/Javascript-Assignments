@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 const Todos = ({ todos, deleteTodo, }) => {
   const todoList = todos.length ? (
     todos.map(todo => (
