@@ -1,0 +1,15 @@
+{
+  "name": "redux-starter",
+  "version": "1.0.0",
+  "description": "Redux Starter",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf ./dist/*",
+    "build": "npm run clean && webpack -p --env.production",
+    "server": "node server",
+    "start": "npm run server",
+    "heroku-postbuild": "cd redux-starter && npm run build && npm run start"
+  },
+  "author": "Akshay Pawar",
+  "license": "ISC"
+}
