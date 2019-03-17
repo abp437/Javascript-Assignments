@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "name": "Margherita",
+    "image_url": "https://www.dominos.co.in/files/items/Margherit.jpg",
+    "size": "Jumbo",
+    "price": 300,
+    "discount": 50,
+    "category": "veg"
+  },
+  {
+    "id": 2,
+    "name": "Peppy Paneer",
+    "image_url": "https://www.dominos.co.in/files/items/Peppy_Paneer.jpg",
+    "size": "Large",
+    "price": 500,
+    "discount": 50,
+    "category": "veg"
+  },
+  {
+    "id": 3,
+    "name": "Paneer Makhni",
+    "image_url": "https://www.dominos.co.in/files/items/Paneer_Makhni.jpg",
+    "size": "Small",
+    "price": 99,
+    "discount": 0,
+    "category": "veg"
+  },
+  {
+    "id": 4,
+    "name": "Farm House",
+    "image_url": "https://www.dominos.co.in/files/items/Farmhouse.jpg",
+    "size": "Medium",
+    "price": 125,
+    "discount": 0,
+    "category": "veg"
+  },
+  {
+    "id": 5,
+    "name": "Mexican Green Wave",
+    "image_url": "https://www.dominos.co.in//files/items/Mexican_Green_Wave.jpg",
+    "size": "Medium",
+    "price": 125,
+    "discount": 30,
+    "category": "veg"
+  },
+  {
+    "id": 6,
+    "name": "Veg Extravaganz",
+    "image_url": "https://www.dominos.co.in/files/items/Veg_Extravaganz.jpg",
+    "size": "Medium",
+    "price": 125,
+    "discount": 0,
+    "category": "veg"
+  },
+  {
+    "id": 7,
+    "name": "Pepper Barbeque Chicken",
+    "image_url": "https://www.dominos.co.in//files/items/Pepper_Barbeque_&_Onion.jpg",
+    "size": "Medium",
+    "price": 125,
+    "discount": 0,
+    "category": "non-veg"
+  },
+  {
+    "id": 8,
+    "name": "Chicken sausage",
+    "image_url": "https://5.imimg.com/data5/TK/XD/MY-29540739/chicken-sausage-500x500.png",
+    "size": "Medium",
+    "price": 125,
+    "discount": 30,
+    "category": "non-veg"
+  },
+  {
+    "id": 9,
+    "name": "Chicken golden delight",
+    "image_url": "https://www.dominos.co.in//files/items/Chicken_Golden_Delight.jpg",
+    "size": "Medium",
+    "price": 125,
+    "discount": 30,
+    "category": "non-veg"
+  },
+  {
+    "id": 10,
+    "name": "Pepper Barbeque",
+    "image_url": "https://www.dominos.co.in/files/items/Pepper_Barbeque.jpg",
+    "size": "Medium",
+    "price": 125,
+    "discount": 0,
+    "category": "non-veg"
+  },
+  {
+    "id": 11,
+    "name": "Peri peri chicken",
+    "image_url": "https://www.dominos.co.in//files/items/Peri-Peri_Chicken.jpg",
+    "size": "Medium",
+    "price": 125,
+    "discount": 40,
+    "category": "non-veg"
+  },
+  {
+    "id": 12,
+    "name": "Grilled chicken",
+    "image_url": "http://www.opizza.in/assets/images/pizza/non-veg/grilled_chicken.jpg",
+    "size": "Medium",
+    "price": 125,
+    "discount": 0,
+    "category": "non-veg"
+  }
+]
