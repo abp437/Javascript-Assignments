@@ -1,10 +1,9 @@
-import PropTypes from 'prop-types';
 import TextColor from './higherOrderComponents/textColor';
 
 const Contact = (props) => {
   const { generatedClass, } = props;
   return (
-    <div className={generatedClass}>
+    <div className={`container ${generatedClass}`}>
       <h4 className="center">Contact</h4>
       <p className="center">
         Lorem ipsum dolor sit amet consectetur adipisicing elit.

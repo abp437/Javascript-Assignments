@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-import axios from 'axios';
 import TextColor from '../higherOrderComponents/textColor';
 
 class Post extends React.Component {
@@ -33,7 +31,7 @@ class Post extends React.Component {
         <h4 className="center">Loading Post...</h4>
       );
     return (
-      <div className={`${generatedClass} container`}>
+      <div className={`container ${generatedClass}`}>
         {renderPost}
       </div>
     );

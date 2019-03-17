@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 class AddToDo extends React.Component {
   constructor(props) {
     super(props);
