@@ -1,10 +1,10 @@
-// TRIVIAL APPROACH
+// TRIVIAL DRY APPROACH -AKSHAY
 
-// const PER_KG_AMOUNT = 500;
+// const PER_KG_AMOUNT = 520;
 // const GRAMS_PER_KG = 1000;
-// const MONEY_AND_GRAMS_LIMIT = 1000;
-// const STEP_FOR_CALCULATION = 25;
-// const ITERATION_COUNT = MONEY_AND_GRAMS_LIMIT / STEP_FOR_CALCULATION;
+// const MONEY_AND_GRAMS_LIMIT = 10000;
+// const STEP_FOR_MONEY_AND_GRAMS = 25;
+// const ITERATION_COUNT = MONEY_AND_GRAMS_LIMIT / STEP_FOR_MONEY_AND_GRAMS;
 // function getGramsForMoney(moneyValue) {
 //   return (moneyValue * GRAMS_PER_KG) / PER_KG_AMOUNT;
 // }
@@ -20,7 +20,7 @@
 //     getComputedValue = getMoneyForGrams;
 //   }
 //   for (let i = 0; i < ITERATION_COUNT; i++) {
-//     value += STEP_FOR_CALCULATION;
+//     value += STEP_FOR_MONEY_AND_GRAMS;
 //     console.log(`${value} : ${Math.floor(getComputedValue(value))}`);
 //   }
 // }
@@ -33,18 +33,43 @@
 // console.log('----------------------------------------------------------------');
 // makeChart('grams-money');
 
+// MODERATE DRY APPROACH - HITESH
 
-// CORRECT APPROACH
+// const PER_KG_AMOUNT = 520;
+// const GRAMS_PER_KG = 1000;
+// const MONEY_AND_GRAMS_LIMIT = 10000;
+// const STEP_FOR_MONEY_AND_GRAMS = 25;
+// const ITERATION_COUNT = MONEY_AND_GRAMS_LIMIT / STEP_FOR_MONEY_AND_GRAMS;
 
-const PER_KG_AMOUNT = 500;
+// const calc = (flag = true) => {
+//  let counter = 0;
+//  for (let i = 0; i < ITERATION_COUNT; i++) {
+//     counter += STEP_FOR_MONEY_AND_GRAMS;
+//       let gramsForMoney = flag ? (counter * GRAMS_PER_KG) / PER_KG_AMOUNT : (PER_KG_AMOUNT * counter) / GRAMS_PER_KG;
+//       console.log(`${counter} : ${Math.floor(gramsForMoney)}`);
+//  }
+// }
+// console.log('----------------------------------------------------------------');
+// console.log('--------------------- MONEY : WEIGHT CHART ---------------------');
+// console.log('----------------------------------------------------------------');
+// calc();
+// console.log('----------------------------------------------------------------');
+// console.log('--------------------- WEIGHT : MONEY CHART ---------------------');
+// console.log('----------------------------------------------------------------');
+// calc(false);
+
+
+// CORRECT DRY APPROACH - SHIRISH
+
+const PER_KG_AMOUNT = 520;
 const GRAMS_PER_KG = 1000;
-const MONEY_AND_GRAMS_LIMIT = 1000;
-const STEP_FOR_CALCULATION = 25;
-const ITERATION_COUNT = MONEY_AND_GRAMS_LIMIT / STEP_FOR_CALCULATION;
+const MONEY_AND_GRAMS_LIMIT = 10000;
+const STEP_FOR_MONEY_AND_GRAMS = 25;
+const ITERATION_COUNT = MONEY_AND_GRAMS_LIMIT / STEP_FOR_MONEY_AND_GRAMS;
 const printChart = (calculate) => {
   let value1 = 0;
   for (let i = 0; i < ITERATION_COUNT; i++) {
-    value1 += STEP_FOR_CALCULATION
+    value1 += STEP_FOR_MONEY_AND_GRAMS
     console.log(`${value1} : ${Math.floor(calculate(value1))}`);
   }
 }
