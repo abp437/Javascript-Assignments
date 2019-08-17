@@ -1,0 +1,2 @@
+Using Consumers of a context with a `.Consumer` syntax allows us to consume multiple contexts
+and can also be used within Functional Components.

@@ -18,10 +18,20 @@ export default class ThemeContextProvider extends Component {
         bg: '#555',
       }
     }
+    this.toggleTheme = this.toggleTheme.bind(this);
   }
+
+  toggleTheme() {
+    const { isLightTheme } = this.state;
+    this.setState({
+      isLightTheme: !isLightTheme,
+    })
+  }
+
   render() {
+    const { toggleTheme } = this;
     return (
-      <ThemeContext.Provider value={{...this.state}}>
+      <ThemeContext.Provider value={{ ...this.state, toggleTheme, }}>
         {this.props.children}
       </ThemeContext.Provider>
     );
