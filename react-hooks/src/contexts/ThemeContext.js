@@ -17,7 +17,7 @@ export default class ThemeContextProvider extends Component {
         ui: '#333',
         bg: '#555',
       }
-    }
+    };
     this.toggleTheme = this.toggleTheme.bind(this);
   }
 
