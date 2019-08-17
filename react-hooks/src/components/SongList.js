@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import NewSongForm from './NewSongForm';
 
-export default function () {
+const SongList = () => {
   const [songs, setSongs] = useState([
     {
       id: 1,
@@ -20,10 +21,10 @@ export default function () {
     },
   ]);
 
-  const addSong = () => {
+  const addSong = (title) => {
     setSongs([...songs, {
-      id: Math.floor(Math.random() * 1000),
-      title: 'Boots of Spanish Leather',
+      id: Math.floor((Math.random() * 1000) * (Math.random() * 1000)),
+      title,
     }]);
   }
   return (
@@ -38,7 +39,9 @@ export default function () {
           })
         }
       </ul>
-      <button onClick={() => addSong()}>Add Song</button>
+      <NewSongForm addSong={addSong} />
     </div>
   );
 }
+
+export default SongList;
