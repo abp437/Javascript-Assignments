@@ -2,3 +2,19 @@ Using Consumers of a context with a `.Consumer` syntax allows us to consume mult
 and can also be used within Functional Components.
 
 Is Nesting Contexts the only way out for Consuming Multiple Contexts?
+
+But there's one caveat to React Context API:
+It's not meant for High Frequency updates, it wasn't designed for it.
+So you can't say that you can replace your regular state management library with it.
+
+React Hooks:
+Hooks are Special Functions inside Functional Components.
+
+useState():
+Use State within a Functional Component
+
+useEffect():
+Run code when a Component renders(or re-renders)
+
+useContext():
+Consume Context in a Functional Component
