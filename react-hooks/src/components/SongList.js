@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NewSongForm from './NewSongForm';
 
 const SongList = () => {
@@ -21,6 +21,16 @@ const SongList = () => {
     },
   ]);
 
+  const [age, setAge] = useState(24);
+
+  useEffect(() => {
+    console.log('Use Effect Hook Ran');
+  }, [songs]);
+
+  useEffect(() => {
+    console.log('Use Effect Hook Ran for Age');
+  }, [age]);
+
   const addSong = (title) => {
     setSongs([...songs, {
       id: Math.floor((Math.random() * 1000) * (Math.random() * 1000)),
@@ -40,6 +50,7 @@ const SongList = () => {
         }
       </ul>
       <NewSongForm addSong={addSong} />
+      <button onClick={() => setAge(age + 1)}>Add 1 to age: {age}</button>
     </div>
   );
 }

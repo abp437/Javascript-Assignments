@@ -14,7 +14,8 @@ useState():
 Use State within a Functional Component
 
 useEffect():
-Run code when a Component renders(or re-renders)
+Run code when a Component renders(or re-renders), you need to put up when to run useEffect 
+based on what state values are updated as second param to it.
 
 useContext():
 Consume Context in a Functional Component
