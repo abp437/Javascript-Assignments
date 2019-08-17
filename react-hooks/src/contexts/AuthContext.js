@@ -12,7 +12,7 @@ export default class AuthContextProvider extends Component {
   }
 
   toggleAuth() {
-    const { isAuthenticated } = this;
+    const { isAuthenticated } = this.state;
     this.setState({
       isAuthenticated: !isAuthenticated,
     })
