@@ -5,7 +5,7 @@ import ThemeContextProvider from './contexts/ThemeContext';
 import AuthContextProvider from './contexts/AuthContext';
 import BookContextProvider from './contexts/BookContext';
 import ThemeToggle from './components/ThemeToggle';
-import SongList from './components/SongList';
+// import SongList from './components/SongList';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
             <BookList />
           </BookContextProvider>
           <ThemeToggle />
-          <SongList />
+          {/* <SongList /> */}
         </AuthContextProvider>
       </ThemeContextProvider>
     </div>
